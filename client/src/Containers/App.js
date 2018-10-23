@@ -1,8 +1,8 @@
 import React,{ Component } from 'react'
-import RobotList from './components/RobotList'
-import SearchBox from './components/SearchBox'
-import Scroll from './components/Scroll'
-import ErrorBoundary from './components/ErrorBoudary'
+import RobotList from '../components/RobotList'
+import SearchBox from '../components/SearchBox'
+import Scroll from '../components/Scroll'
+import ErrorBoundary from './ErrorBoudary'
 import './App.css'
 
 export default class App extends Component {
