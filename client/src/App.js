@@ -1,14 +1,29 @@
-import React from 'react'
-import Card from './components/Card'
+import React,{ Component } from 'react'
+import RobotList from './components/RobotList'
+import SearchBox from './components/SearchBox'
 import { robots } from './robots'
 
- const App = () => {
-
-return (
-    <div>
-      <Card id={robots[0].id} name={robots[0].name} email={robots[0].email}/>
-    </div>
-  )
+export default class App extends Component {
+  state = {
+    robots,
+    searchField:  ''
+  }
+  
+  onSearchChange = (e) => {
+    this.setState({
+      searchField: e.target.value
+    })
+  }
+  render() {
+    const filteredRobots = this.state.robots.filter(robot => {
+      return robot.name.toLowerCase().includes(this.state.searchField.toLowerCase())
+    })
+    return (
+      <div className='tc'>
+      <h1>Robofriends</h1>
+      <SearchBox onSearchChange={this.onSearchChange}/>
+      <RobotList robots={filteredRobots}/>
+      </div>
+    )
+  }
 }
-
-export default App
