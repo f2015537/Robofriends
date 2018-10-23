@@ -2,6 +2,7 @@ import React,{ Component } from 'react'
 import RobotList from './components/RobotList'
 import SearchBox from './components/SearchBox'
 import { robots } from './robots'
+import './App.css'
 
 export default class App extends Component {
   state = {
@@ -20,7 +21,7 @@ export default class App extends Component {
     })
     return (
       <div className='tc'>
-      <h1>Robofriends</h1>
+      <h1 className='f1'>Robofriends</h1>
       <SearchBox onSearchChange={this.onSearchChange}/>
       <RobotList robots={filteredRobots}/>
       </div>
