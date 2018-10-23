@@ -1,12 +1,19 @@
 import React,{ Component } from 'react'
 import RobotList from './components/RobotList'
 import SearchBox from './components/SearchBox'
-import { robots } from './robots'
 import './App.css'
 
 export default class App extends Component {
+  componentDidMount(){
+    fetch('https://jsonplaceholder.typicode.com/users')
+    .then(response => response.json())
+    .then(json => this.setState({
+      robots: json
+    }))
+  }
+  
   state = {
-    robots,
+    robots: [],
     searchField:  ''
   }
   
@@ -19,6 +26,8 @@ export default class App extends Component {
     const filteredRobots = this.state.robots.filter(robot => {
       return robot.name.toLowerCase().includes(this.state.searchField.toLowerCase())
     })
+    if(this.state.robots.length === 0) 
+      return <h1 className='tc'>Loading</h1>
     return (
       <div className='tc'>
       <h1 className='f1'>Robofriends</h1>
