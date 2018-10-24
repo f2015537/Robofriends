@@ -35,10 +35,10 @@ import { requestRobots } from '../actions/ajaxActions'
 }
 
 const mapStateToProps = state => ({
-  searchField: state.search.searchField,
-  robots: state.ajax.robots,
-  isPending: state.ajax.isPending,
-  error: state.ajax.error
+  searchField: state.searchReducer.searchField,
+  robots: state.ajaxReducer.robots,
+  isPending: state.ajaxReducer.isPending,
+  error: state.ajaxReducer.error
 })
 
 const mapDispatchToProps = dispatch => ({
