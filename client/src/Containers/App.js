@@ -1,11 +1,13 @@
 import React,{ Component } from 'react'
+import { connect } from 'react-redux'
 import RobotList from '../components/RobotList'
 import SearchBox from '../components/SearchBox'
 import Scroll from '../components/Scroll'
 import ErrorBoundary from './ErrorBoudary'
 import './App.css'
+import { setSearchField } from '../actions/searchActions'
 
-export default class App extends Component {
+ class App extends Component {
   componentDidMount(){
     fetch('https://jsonplaceholder.typicode.com/users')
     .then(response => response.json())
@@ -15,25 +17,21 @@ export default class App extends Component {
   }
   
   state = {
-    robots: [],
-    searchField:  ''
+    robots: []
   }
   
-  onSearchChange = (e) => {
-    this.setState({
-      searchField: e.target.value
-    })
-  }
   render() {
-    const filteredRobots = this.state.robots.filter(robot => {
-      return robot.name.toLowerCase().includes(this.state.searchField.toLowerCase())
+    const { robots } = this.state
+    const { searchField,onSearchChange } = this.props
+    const filteredRobots = robots.filter(robot => {
+      return robot.name.toLowerCase().includes(searchField.toLowerCase())
     })
     if(this.state.robots.length === 0) 
       return <h1 className='tc'>Loading</h1>
     return (
       <div className='tc'>
       <h1 className='f1'>Robofriends</h1>
-      <SearchBox onSearchChange={this.onSearchChange}/>
+      <SearchBox onSearchChange={onSearchChange}/>
       <Scroll>
         <ErrorBoundary>
          <RobotList robots={filteredRobots}/>
@@ -43,3 +41,13 @@ export default class App extends Component {
     )
   }
 }
+
+const mapStateToProps = state => ({
+  searchField: state.searchField
+})
+
+const mapDispatchToProps = dispatch => ({
+  onSearchChange: e => dispatch(setSearchField(e.target.value))
+})
+
+export default connect(mapStateToProps,mapDispatchToProps)(App)
