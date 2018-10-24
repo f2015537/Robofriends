@@ -1,9 +1,16 @@
-import { createStore,applyMiddleware } from 'redux'
-import { searchRobots } from './reducers/searchReducer'
-import { createLogger } from 'redux-logger'
+import { createStore,  compose } from 'redux';
+import rootReducer from './reducers/rootReducer';
 
-const middleware = [createLogger()]
-const store = createStore(searchRobots,applyMiddleware(...middleware))
+const initialState = {};
 
-export default store
 
+
+const store = createStore(
+  rootReducer,
+  initialState,
+  compose(
+    window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
+  )
+);
+
+export default store;

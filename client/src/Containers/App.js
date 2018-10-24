@@ -43,7 +43,7 @@ import { setSearchField } from '../actions/searchActions'
 }
 
 const mapStateToProps = state => ({
-  searchField: state.searchField
+  searchField: state.search.searchField
 })
 
 const mapDispatchToProps = dispatch => ({
