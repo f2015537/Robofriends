@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import {searchRobots} from './searchReducer';
-import {requestRobots} from './ajaxReducer';
+import searchReducer from './searchReducer';
+import ajaxReducer from './ajaxReducer';
 
 export default combineReducers({
-  search: searchRobots,
-  ajax: requestRobots
+  searchReducer,
+  ajaxReducer
 });

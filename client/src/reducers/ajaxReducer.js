@@ -6,7 +6,7 @@ const initialState = {
     error: ''
 }
 
-export const requestRobots = (state=initialState,action={}) => {
+const ajaxReducer = (state=initialState,action={}) => {
     switch (action.type) {
         case REQUEST_ROBOTS_PENDING:
             return Object.assign({}, state, {isPending: true})
@@ -18,3 +18,5 @@ export const requestRobots = (state=initialState,action={}) => {
             return state
     }
 }
+
+export default ajaxReducer
