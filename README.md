@@ -1,5 +1,4 @@
 ### Robofriends
- Ready to use starter pack for full stack MERN Apps.
  1) Clone repo
  2) Navigate to cloned Repo.
  3) Run `npm install` to install backend dependencies.
