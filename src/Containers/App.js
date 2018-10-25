@@ -10,7 +10,8 @@ import { requestRobots } from '../actions/ajaxActions'
 
  class App extends Component {
   componentDidMount(){
-    this.props.onRequestRobots()
+    const { onRequestRobots } = this.props
+    onRequestRobots()
   }
   
   render() {
